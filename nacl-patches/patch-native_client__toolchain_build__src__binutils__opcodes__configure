@@ -1,0 +1,38 @@
+--- native_client/toolchain_build/src/binutils/opcodes/configure.orig	2014-06-10 11:20:26.456263299 -0500
++++ native_client/toolchain_build/src/binutils/opcodes/configure	2014-06-10 11:33:02.079210426 -0500
+@@ -11490,7 +11490,7 @@
+ fi
+ 
+ 
+-GCC_WARN_CFLAGS="-W -Wall -Wstrict-prototypes -Wmissing-prototypes"
++GCC_WARN_CFLAGS="-Wstrict-prototypes -Wmissing-prototypes"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ __GNUC__
+@@ -11512,7 +11512,7 @@
+      *) as_fn_error "bad value ${enableval} for --enable-werror" "$LINENO" 5 ;;
+    esac
+ fi
+-
++ERROR_ON_WARNING="no"
+ 
+ # Disable -Wformat by default when using gcc on mingw
+ case "${host}" in
+@@ -11524,17 +11524,6 @@
+   *) ;;
+ esac
+ 
+-# Enable -Werror by default when using gcc
+-if test "${GCC}" = yes -a -z "${ERROR_ON_WARNING}" ; then
+-    ERROR_ON_WARNING=yes
+-fi
+-
+-NO_WERROR=
+-if test "${ERROR_ON_WARNING}" = yes ; then
+-    GCC_WARN_CFLAGS="$GCC_WARN_CFLAGS -Werror"
+-    NO_WERROR="-Wno-error"
+-fi
+-
+ if test "${GCC}" = yes ; then
+   WARN_CFLAGS="${GCC_WARN_CFLAGS}"
+ fi

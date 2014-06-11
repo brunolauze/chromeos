@@ -1,0 +1,30 @@
+--- .DEPS.git.orig	2014-06-10 09:05:32.525820611 -0500
++++ .DEPS.git	2014-06-10 09:18:34.901765196 -0500
+@@ -64,7 +64,7 @@
+     'src/third_party/hunspell_dictionaries':
+         Var('git_url') + '/chromium/deps/hunspell_dictionaries.git@4560bdd463a3500e2334e85c8a0e9e5d5d6774e7',
+     'src/third_party/icu':
+-        Var('git_url') + '/chromium/deps/icu46.git@c25f7de14670091b1b7dfeb7af4d04050cbbb1d8',
++        Var('git_url') + '/chromium/deps/icu52.git@cc7f2c2dfb4d7a492bf86f29d59f25c936197802',
+     'src/third_party/jsoncpp/source/include':
+         Var('git_url') + '/external/jsoncpp/jsoncpp/include.git@b0dd48e02b6e6248328db78a65b5c601f150c349',
+     'src/third_party/jsoncpp/source/src/lib_json':
+@@ -155,6 +155,18 @@
+         Var('git_url') + '/external/swarming.client.git@ae8085b09e6162b4ec869e430d7d09c16b32b433',
+     'src/v8':
+         Var('git_url') + '/external/v8.git@38de99aae2d4efc5796aa6935c1648447ec32fc8',
++    'src/platform2':
++        Var('git_url') + '/chromiumos/platform2',
++    'src/platform/shill':
++        Var('git_url') + '/chromiumos/platform/shill.git@154cedfe04d7cb1d202792f6f652f9b19f701d37',
++    'src/platform/system_api':
++        Var('git_url') + '/chromiumos/platform/system_api.git@ba73627b396a7773203a6c554ae2cc759d52eb2b',
++    'src/platform/metrics':
++        Var('git_url') + '/chromiumos/platform/metrics.git@4bfd15d6a83928524fa227b8228a6d89da9d82ea',
++    'src/platform/power_manager':
++        Var('git_url') + '/chromiumos/platform/power_manager.git@4ccf6520e4712f39135617c3dcc0340bd9e9efaf',
++    'src/platform/cros-disks':
++        Var('git_url') + '/chromiumos/platform/cros-disks.git@266af046f7fcec32abd9ae8a4896471f0a12a48a',
+ }
+ 
+ deps_os = {

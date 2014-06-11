@@ -1,0 +1,11 @@
+--- native_client/toolchain_build/src/binutils/gold/configure.orig	2014-06-10 11:10:51.495301667 -0500
++++ native_client/toolchain_build/src/binutils/gold/configure	2014-06-10 11:11:40.201299766 -0500
+@@ -6644,7 +6644,7 @@
+ 
+ 
+ 
+-GCC_WARN_CFLAGS="-W -Wall -Wstrict-prototypes -Wmissing-prototypes"
++GCC_WARN_CFLAGS="-Wstrict-prototypes -Wmissing-prototypes"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ __GNUC__

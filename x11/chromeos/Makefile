@@ -29,7 +29,6 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libasound.so:${PORTSDIR}/audio/alsa-lib \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libnss3.so:${PORTSDIR}/security/nss \
-		libgnome-keyring.so:${PORTSDIR}/security/libgnome-keyring \
 		libcups.so:${PORTSDIR}/print/cups-client \
 		libevent-1.4.so:${PORTSDIR}/devel/libevent \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \
@@ -44,10 +43,25 @@ USES=		bison compiler:c++11-lib desktop-file-utils pkgconfig \
 USE_PERL5=	build
 USE_PYTHON_BUILD=	2
 USE_XORG=	scrnsaverproto x11 xproto xscrnsaver xtst
-USE_GNOME=	glib20 gtk20 dconf libxslt
+#USE_GNOME=	glib20 gtk20 dconf libxslt
+USE_GNOME=	libxslt
 
 SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
-ALL_TARGET=	chrome
+ALL_TARGET=	All \
+		chrome \
+		aura_builder \
+		rlz_id \
+		player_x11 \
+		xdisplaycheck \
+		mojo_shell \
+		package_mojo_sample_app \
+		package_mojo_aura_demo \
+		package_mojo_compositor_app \
+		package_mojo_wget \
+		mojo \
+		mojo_browser \
+		mojo_dbus_echo_service
+
 
 # See build/common.gypi for all the available variables.
 GYP_DEFINES+=	use_cups=1 \
@@ -57,15 +71,19 @@ GYP_DEFINES+=	use_cups=1 \
 		use_system_libusb=1 \
 		use_system_libevent=1 \
 		use_system_libvpx=0 \
+		use_system_ssl=1 \
+		use_system_zlib=1 \
+		use_system_expat=1 \
+		use_system_libjpeg=1 \
 		linux_breakpad=0 \
 		linux_strip_binary=1 \
 		use_allocator=none \
 		linux_use_heapchecker=0 \
 		test_isolation_mode=noop \
 		clang_use_chrome_plugins=0 \
+		build_ffmpegsumo=1 \
 		enable_webrtc=1 \
 		enable_openmax=1 \
-		disable_nacl=1 \
 		use_ash=1 \
 		use_aura=1 \
 		chromeos=1 \
@@ -75,7 +93,35 @@ GYP_DEFINES+=	use_cups=1 \
 		no_gc_sections=1 \
 		os_ver=${OSVERSION} \
 		prefix_dir=${LOCALBASE} \
-		python_ver=${PYTHON_VER}
+		python_ver=${PYTHON_VER} \
+
+
+#Platform2 Definitions
+GYP_DEFINES+=	platform2_root=${WRKSRC}/platform2 \
+		USE_attestation=0 \
+		USE_buffet=0 \
+		USE_cellular=0 \
+		USE_crash_reporting=0 \
+		USE_cros_disks=0 \
+		USE_cros_host=0 \
+		USE_debugd=0 \
+		USE_feedback=0 \
+		USE_gdmwimax=0 \
+		USE_lorgnette=0 \
+		USE_passive_metrics=0 \
+		USE_power_management=0 \
+		USE_profile=0 \
+		USE_shill=0 \
+		USE_tcmalloc=0 \
+		USE_test=0 \
+		USE_tpm=0 \
+		USE_vpn=0 \
+		USE_wimax=0 \
+		libbase_ver=271506
+
+
+GYP_DEFINES+=	disable_nacl=1 \
+		disable_nacl_untrusted=1
 
 # FreeBSD Chromium Api Key
 # Set up Google API keys, see http://www.chromium.org/developers/how-tos/api-keys .
@@ -170,18 +216,6 @@ CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" \
 		CXXFLAGS="${CXXFLAGS}" \
 		LDFLAGS="${LDFLAGS}"
 
-
-repair:
-	cd ${WRKSRC} && git clean -f
-	cd ${WRKSRC} && git reset --hard
-	cd ${WRKSRC} && python tools/deps2git/deps2submodules.py .DEPS.git
-	cd ${WRKSRC} && git submodule foreach git clean -f
-	cd ${WRKSRC} && git submodule foreach git reset --hard
-	cd ${WRKSRC} && git submodule update --init --recursive
-	cd ${WRKSRC} && git clean -f
-	cd ${WRKSRC} && git reset --hard
-	cd ${WRKSRC} && git pull
-
 pre-everything::
 	@${ECHO_MSG}
 	@${ECHO_MSG} "To build Chromium, you should have around 1 GB of memory"
@@ -207,7 +241,9 @@ post-patch:
 
 do-configure:
 	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} ${PYTHON_CMD} \
-		./build/gyp_chromium chrome/chrome.gyp --depth .
+		./build/gyp_chromium build/all.gyp --depth .
+
+#chrome/chrome.gyp --depth .
 
 test regression-test: build
 .for t in ${TEST_TARGETS}

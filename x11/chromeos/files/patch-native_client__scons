@@ -1,0 +1,8 @@
+--- native_client/scons.orig	2014-06-03 22:02:45.823024102 -0500
++++ native_client/scons	2014-06-03 22:02:57.944024889 -0500
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!/usr/bin/env bash
+ # Copyright (c) 2011 The Native Client Authors. All rights reserved.
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.

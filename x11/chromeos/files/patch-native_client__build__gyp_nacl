@@ -1,0 +1,8 @@
+--- native_client/build/gyp_nacl.orig	2014-06-04 08:34:26.084411946 -0500
++++ native_client/build/gyp_nacl	2014-06-04 08:34:36.588474482 -0500
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/bin/env python
+ 
+ # This script is wrapper for NaCl that adds some support for how GYP
+ # is invoked by NaCl beyond what can be done it the gclient hooks.

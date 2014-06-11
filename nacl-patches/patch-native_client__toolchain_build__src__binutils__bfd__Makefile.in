@@ -1,0 +1,11 @@
+--- native_client/toolchain_build/src/binutils/bfd/Makefile.in.orig	2014-06-08 12:25:10.274332353 -0500
++++ native_client/toolchain_build/src/binutils/bfd/Makefile.in	2014-06-08 12:25:23.220332323 -0500
+@@ -336,7 +336,7 @@
+ @INSTALL_LIBBFD_FALSE@noinst_LTLIBRARIES = libbfd.la
+ AM_CFLAGS = $(WARN_CFLAGS)
+ AM_CPPFLAGS = -DBINDIR='"$(bindir)"'
+-@PLUGINS_TRUE@LIBDL = -ldl
++@PLUGINS_TRUE@LIBDL = 
+ 
+ # bfd.h goes here, for now
+ BFD_H = bfd.h

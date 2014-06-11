@@ -1,5 +1,5 @@
---- chrome/common/chrome_paths.cc.orig	2014-05-30 15:06:19.417534867 -0500
-+++ chrome/common/chrome_paths.cc	2014-06-03 08:10:10.812362530 -0500
+--- chrome/common/chrome_paths.cc.orig	2014-06-05 14:26:36.650571661 -0500
++++ chrome/common/chrome_paths.cc	2014-06-05 14:31:21.205552489 -0500
 @@ -100,6 +100,18 @@
  #endif  // defined(GOOGLE_CHROME_BUILD)
  #endif  // defined(OS_LINUX)
@@ -66,12 +66,3 @@
  #endif  // !defined(OS_MACOSX)
        break;
  
-@@ -576,7 +600,7 @@
-         return false;
-       cur = cur.Append(FILE_PATH_LITERAL("NativeMessagingHosts"));
-       break;
--#endif  // defined(OS_LINUX) || (defined(OS_MACOSX) && !defined(OS_IOS))
-+#endif  // defined(OS_LINUX) || defined(OS_FREEBSD) || (defined(OS_MACOSX) && !defined(OS_IOS))
- 
-     default:
-       return false;

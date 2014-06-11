@@ -1,0 +1,11 @@
+--- native_client/toolchain_build/src/binutils/gold/Makefile.in.orig	2014-06-08 12:21:32.955347211 -0500
++++ native_client/toolchain_build/src/binutils/gold/Makefile.in	2014-06-08 12:21:41.067349073 -0500
+@@ -419,7 +419,7 @@
+ 	-DTOOLLIBDIR="\"$(tooldir)/lib\"" @INCINTL@
+ 
+ LIBIBERTY = ../libiberty/libiberty.a
+-@PLUGINS_TRUE@LIBDL = -ldl
++@PLUGINS_TRUE@LIBDL = 
+ @THREADS_TRUE@THREADSLIB = -lpthread
+ 
+ # NOTE: we use --noirt to specify that private libraries should

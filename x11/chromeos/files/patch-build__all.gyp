@@ -1,5 +1,5 @@
---- build/all.gyp.orig	2014-06-03 11:26:30.053546858 -0500
-+++ build/all.gyp	2014-06-03 11:28:03.842540759 -0500
+--- build/all.gyp.orig	2014-06-10 09:30:50.744740583 -0500
++++ build/all.gyp	2014-06-10 14:23:24.335992792 -0500
 @@ -152,6 +152,24 @@
              }],
            ],
@@ -25,3 +25,21 @@
          ['use_x11==1', {
            'dependencies': [
              '../tools/xdisplaycheck/xdisplaycheck.gyp:*',
+@@ -1200,7 +1218,7 @@
+       ],  # targets
+     }, {
+       'conditions': [
+-        ['OS=="linux"', {
++        ['OS=="linux" or OS=="freebsd"', {
+           # TODO(thakis): Remove this once the linux gtk bot no longer references
+           # it (probably after the first aura release on linux), see r249162
+           'targets': [
+@@ -1212,7 +1230,7 @@
+               ],
+             },
+           ],  # targets
+-      }]], # OS=="linux"
++      }]], # OS=="linux" or OS=="freebsd"
+     }], # "use_aura==1"
+     ['test_isolation_mode != "noop"', {
+       'targets': [

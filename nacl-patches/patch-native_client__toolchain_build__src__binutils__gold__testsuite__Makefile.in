@@ -1,0 +1,13 @@
+--- native_client/toolchain_build/src/binutils/gold/testsuite/Makefile.in.orig	2014-06-10 16:02:53.165582342 -0500
++++ native_client/toolchain_build/src/binutils/gold/testsuite/Makefile.in	2014-06-10 16:03:14.520579077 -0500
+@@ -2037,8 +2037,8 @@
+ # The two_file_test tests -fmerge-constants, so we simply always turn
+ # it on.  This may need to be controlled by a configure option
+ # eventually.
+-AM_CFLAGS = $(WARN_CFLAGS) $(LFS_CFLAGS) -fmerge-constants
+-AM_CXXFLAGS = $(WARN_CXXFLAGS) $(LFS_CFLAGS) -fmerge-constants
++AM_CFLAGS = $(WARN_CFLAGS) $(LFS_CFLAGS)
++AM_CXXFLAGS = $(WARN_CXXFLAGS) $(LFS_CFLAGS)
+ AM_CPPFLAGS = \
+ 	-I$(srcdir) -I$(srcdir)/.. -I$(srcdir)/../../include \
+ 	-I$(srcdir)/../../elfcpp -I.. \
